@@ -25,4 +25,12 @@ class StaffController extends Controller
         return response()->json($staff);
     }
 
+    //TODO
+
+    //insert into the staff table
+
+    //update staff 
+
+    //delete from staff table
+
 }
