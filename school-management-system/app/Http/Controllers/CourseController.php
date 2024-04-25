@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
+
+    //todo
+
     //Get all the courses
 
     //Get a course based on a particular courseID

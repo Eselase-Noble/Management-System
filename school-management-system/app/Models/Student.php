@@ -11,6 +11,7 @@ class Student extends Model
 
 
     protected $fillable = [
+        'studentID',
         'surname',
         'othernames',
         'email',
@@ -19,6 +20,16 @@ class Student extends Model
         'telephone',
         'address',
         'nationality',
-    
+
     ];
+
+    public function grade(){
+        return $this->hasMany(Grades::class, 'studentID','studentID');
+    }
+
+    public  function enrolment(){
+        return $this->hasOne(Enrolments::class, 'studentID', 'studentID');
+    }
+
+
 }

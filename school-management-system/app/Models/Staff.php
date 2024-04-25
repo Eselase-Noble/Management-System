@@ -10,7 +10,7 @@ class Staff extends Model
     use HasFactory;
 
             protected $fillable = [
-        'staffID',        
+        'staffID',
         'surname',
         'otherNames',
         'email',
@@ -20,6 +20,10 @@ class Staff extends Model
         'address',
         'nationality',
         'qualification'
-    
+
     ];
+
+            public function course(){
+                return $this->hasMany(Courses::class, 'staffID', 'staffID');
+            }
 }

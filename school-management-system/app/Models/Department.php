@@ -13,4 +13,8 @@ class Department extends Model
         'departmentID',
         'departmentName'
     ];
+
+    public function course(){
+        return $this->hasMany(Courses::class, 'departmentID', 'departmentID');
+    }
 }

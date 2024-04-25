@@ -20,10 +20,14 @@ class Courses extends Model
     ];
 
     public function department(){
-        return $this->belongsTo(Department::class);
+        return $this->belongsTo(Department::class, 'departmentID','departmentID');
     }
 
     public function staff(){
-        return $this->belongsTo(Staff::class);
+        return $this->belongsTo(Staff::class, 'staffID','staffID');
+    }
+
+    public function enrolments(){
+        return $this->hasMany(Enrolments::class, 'courseID', 'courseID');
     }
 }

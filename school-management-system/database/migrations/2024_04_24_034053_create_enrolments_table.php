@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('enrolments', function (Blueprint $table) {
-            $table->id();
+            $table->id('enrolmentID');
+            $table->string('studentID');
+            $table->foreign('studentID')->references('studentID')->on('students')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('courseID');
+            $table->foreign('courseID')->references('courseID')->on('courses')->onDelete('cascade')->onUpdate('cascade');
+            $table->Date('enrolDate');
             $table->timestamps();
         });
     }

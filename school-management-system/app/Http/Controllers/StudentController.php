@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
-    //select * from users;
+    //select * from students;
     public function getAllStudents(){
         $student = Student::all();
         return response()->json($student);
