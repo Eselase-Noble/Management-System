@@ -24,4 +24,8 @@ class Grades extends Model
     public function course(){
         return $this->belongsTo(Courses::class, 'courseID', 'courseID');
     }
+
+    public function transcript(){
+        return $this->belongsTo(Transcript::class, 'gradeID', 'gradeID');
+    }
 }

@@ -11,8 +11,12 @@ class Transcript extends Model
 
     protected $fillable = [
         'transcriptID',
-        'courseID',
-        'studentID',
         'gradeID'
     ];
+
+public function grade(){
+    return $this->hasMany(Grades::class, 'gradeID', 'gradeID');
+}
+
+
 }

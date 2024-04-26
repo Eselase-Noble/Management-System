@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transcripts', function (Blueprint $table) {
-            $table->id();
+            $table->id('transcriptID');
+            $table->string('gradeID');
+            $table->foreign('gradeID')->references('gradeID')->on('grades')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
