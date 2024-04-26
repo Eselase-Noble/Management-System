@@ -8,13 +8,21 @@ use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
-    //select * from students;
+
+    /** select * from students;
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getAllStudents(){
         $student = Student::all();
         return response()->json($student);
     }
 
-    //select * from users where id = id;
+
+    /**
+     * select * from students where id = id;
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getStudentByID($id){
         $student = Student::find($id);
         if(!$student){
@@ -24,9 +32,16 @@ class StudentController extends Controller
     }
 
     //insert into users
+
+    /**
+     * select student based on studentID
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function addStudent(Request $request){
         $input = $request->all();
         $validator = Validator::make($input, [
+            'studentID' => ['required', 'max:100', 'string'],
         'surname' => ['required', 'string', 'max:255'],
         'otherNames'=> ['required', 'string', 'max:255'],
         'email'=> ['required', 'string', 'email', 'max:255','unique:users'],
@@ -46,6 +61,7 @@ class StudentController extends Controller
         //New student instance
 
         $student = new Student();
+        $student->studentID = $input['studentID'];
         $student->surname = $input['surname'];
         $student->otherNames = $input['otherNames'];
         $student->email = $input['email'];
@@ -64,7 +80,14 @@ class StudentController extends Controller
 
     }
 
-    //update users table
+
+
+    /**
+     * update users table
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateStudent(Request $request, $id){
         $student = Student::find($id);
 
@@ -75,6 +98,7 @@ class StudentController extends Controller
         }
 
         $validator = Validator::make ($request->all(), [
+            'studentID' => ['required', 'max:100', 'string'],
             'surname' => ['required', 'string', 'max:255'],
             'otherNames'=> ['required', 'string', 'max:255'],
             'email'=> ['required', 'string', 'email', 'max:255','unique:users,email,' .$id],
@@ -92,6 +116,7 @@ class StudentController extends Controller
         }
 
         //update the student records
+        $student->stidentID = $request->studentID;
         $student->surname = $request->surname;
         $student->otherNames = $request->otherNames;
         $student->email = $request->email;
@@ -109,6 +134,11 @@ class StudentController extends Controller
         ]);
     }
 
+    /**
+     * delete student where studentID = $id
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function deleteStudent($id){
         $student = Student::find($id);
 

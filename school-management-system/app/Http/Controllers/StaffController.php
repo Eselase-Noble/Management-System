@@ -10,7 +10,9 @@ use function Symfony\Component\String\s;
 class StaffController extends Controller
 {
 
-
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     //selecy * from staff table
     public function getAllStaffs(){
         $staff =  Staff::all();
@@ -18,6 +20,11 @@ class StaffController extends Controller
     }
 
     //Select * from staff table where id = $id
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getStaffByID($id){
         $staff = Staff::find($id);
         if(!$staff){
@@ -31,10 +38,15 @@ class StaffController extends Controller
 
     //insert into the staff table
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function addStaff(Request $request){
 
         $input = $request->all();
         $validator = Validator::make($input, [
+            'staffID' => ['required', 'max:100', 'string'],
         'surname' => ['required', 'string', 'max:255'],
         'otherNames'=> ['required', 'string', 'max:255'],
         'email'=> ['required', 'string', 'email', 'max:255','unique:users'],
@@ -56,6 +68,7 @@ class StaffController extends Controller
         //New Staff instance
 
         $staff = new Staff();
+        $staff->staffID = $input['staffID'];
         $staff->surname = $input['surname'];
         $staff->otherNames = $input['otherNames'];
         $staff->email = $input['email'];
@@ -79,6 +92,11 @@ class StaffController extends Controller
 
     //update staff
 
+    /**
+     * @param Request $request
+     * @param $staffID
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateStaff(Request $request, $staffID){
 
         $staff = Staff::find($staffID);
@@ -90,6 +108,7 @@ class StaffController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
+            'staffID' => ['required', 'max:100', 'string'],
             'surname' => ['required', 'string', 'max:255'],
             'otherNames'=> ['required', 'string', 'max:255'],
             'email'=> ['required', 'string', 'email', 'max:255','unique:users,email' .$staffID],
@@ -107,7 +126,7 @@ class StaffController extends Controller
             ], 422);
         }
 
-        $staff = new Staff();
+        $staff->staffID = $request['staffID'];
         $staff->surname = $request['surname'];
         $staff->otherNames = $request['otherNames'];
         $staff->email = $request['email'];
@@ -127,6 +146,11 @@ class StaffController extends Controller
     }
 
     //delete from staff table
+
+    /**
+     * @param $staffID
+     * @return \Illuminate\Http\JsonResponse|void
+     */
     public function deleteStaff($staffID){
         $staff = Staff::find($staffID);
 

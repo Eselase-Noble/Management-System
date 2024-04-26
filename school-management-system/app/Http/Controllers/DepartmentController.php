@@ -8,11 +8,10 @@ use Illuminate\Support\Facades\Validator;
 
 class DepartmentController extends Controller
 {
-    //todo
 
-    //Get all the departments
 
     /**
+     * Get all the departments
      * @return \Illuminate\Http\JsonResponse
      */
     public function getAllDepartments(){
@@ -23,9 +22,9 @@ class DepartmentController extends Controller
 
     }
 
-    //Get department based on the id
 
     /**
+     * Get department based on the id
      * @param $departmentID
      * @return \Illuminate\Http\JsonResponse
      */
@@ -40,9 +39,10 @@ class DepartmentController extends Controller
         return response()->json($department);
     }
 
-    //Insert into a department table
+
 
     /**
+     * Insert into a department table
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -72,9 +72,10 @@ class DepartmentController extends Controller
     }
 
 
-    //update a record in the department table
+
 
     /**
+     * update a record in the department table
      * @param Request $request
      * @param $departmentID
      * @return void
@@ -99,7 +100,6 @@ class DepartmentController extends Controller
             ], 422);
         }
 
-        $department = new Department();
         $department->departmentID = $request['departmentID'];
         $department->departmentName = $request['departmentName'];
 
@@ -110,9 +110,10 @@ class DepartmentController extends Controller
         ]);
     }
 
-    //delete a particular department
+
 
     /**
+     * delete a particular department
      * @param $departmentID
      * @return \Illuminate\Http\JsonResponse|void
      */
