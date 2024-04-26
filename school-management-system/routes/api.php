@@ -15,13 +15,13 @@ Route::get('/user', function (Request $request) {
  * APIs for User
  */
 
-Route::post('/login', [UserController::class, 'login']);
+Route::post('/user/login', [UserController::class, 'login']);
 
-Route::post('/register', [UserController::class, 'register']);
+Route::post('/user/register', [UserController::class, 'register']);
 
-Route::put('/update/{id}', [UserController::class, 'update']);
+Route::put('/user/update/{id}', [UserController::class, 'update']);
 
-Route::delete('/delete/{id}', [UserController::class, 'delete']);
+Route::delete('/user/delete/{id}', [UserController::class, 'delete']);
 
 /**
  * APIs for Student

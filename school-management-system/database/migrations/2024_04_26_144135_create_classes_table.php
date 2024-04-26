@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sessions', function (Blueprint $table) {
-            $table->id('sessionID');
+        Schema::create('classes', function (Blueprint $table) {
+            $table->id('classID');
             $table->string('courseID');
             $table->foreign('courseID')->references('courseID')->on('courses')->onUpdate('cascade')->onDelete('cascade');
             $table->string('venueID');
             $table->foreign('venueID')->references('venueID')->on('venues')->onUpdate('cascade')->onDelete('cascade');
             $table->date('startTime');
             $table->date('endTime');
-
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('classes');
     }
 };

@@ -31,7 +31,7 @@ class Courses extends Model
         return $this->hasMany(Enrolments::class, 'courseID', 'courseID');
     }
 
-    public function session(){
-        return $this->hasOne(Session::class, 'courseID', 'courseID');
+    public function classes(){
+        return $this->hasOne(classes::class, 'courseID', 'courseID');
     }
 }

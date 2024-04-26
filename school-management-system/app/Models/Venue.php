@@ -14,7 +14,7 @@ class Venue extends Model
         'venueName'
     ];
 
-    public function session(){
-        return $this->hasOne(Session::class,'venueID', 'venueID');
+    public function classes(){
+        return $this->hasOne(classes::class,'venueID', 'venueID');
     }
 }

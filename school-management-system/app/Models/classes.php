@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Session extends Model
+class classes extends Model
 {
     use HasFactory;
 
@@ -25,5 +25,4 @@ class Session extends Model
     public function venue(){
         return $this->hasOne(Venue::class, 'venueID', 'venueID');
     }
-
 }

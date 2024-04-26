@@ -28,7 +28,7 @@ class StudentController extends Controller
         $input = $request->all();
         $validator = Validator::make($input, [
         'surname' => ['required', 'string', 'max:255'],
-        'othernames'=> ['required', 'string', 'max:255'],
+        'otherNames'=> ['required', 'string', 'max:255'],
         'email'=> ['required', 'string', 'email', 'max:255','unique:users'],
         'dob'=> ['required', 'date'],
         'gender'=> ['required', 'in:Male,Female'],
@@ -47,7 +47,7 @@ class StudentController extends Controller
 
         $student = new Student();
         $student->surname = $input['surname'];
-        $student->othernames = $input['othernames'];
+        $student->otherNames = $input['otherNames'];
         $student->email = $input['email'];
         $student->dob = $input['dob'];
         $student->gender = $input['gender'];
@@ -76,7 +76,7 @@ class StudentController extends Controller
 
         $validator = Validator::make ($request->all(), [
             'surname' => ['required', 'string', 'max:255'],
-            'othernames'=> ['required', 'string', 'max:255'],
+            'otherNames'=> ['required', 'string', 'max:255'],
             'email'=> ['required', 'string', 'email', 'max:255','unique:users,email,' .$id],
             'dob'=> ['required', 'date'],
             'gender'=> ['required', 'in:Male,Female'],
@@ -93,7 +93,7 @@ class StudentController extends Controller
 
         //update the student records
         $student->surname = $request->surname;
-        $student->othernames = $request->othernames;
+        $student->otherNames = $request->otherNames;
         $student->email = $request->email;
         $student->dob = $request->dob;
         $student->gender = $request->gender;
