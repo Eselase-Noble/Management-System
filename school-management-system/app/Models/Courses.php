@@ -27,7 +27,11 @@ class Courses extends Model
         return $this->belongsTo(Staff::class, 'staffID','staffID');
     }
 
-    public function enrolments(){
+    public function enrolment(){
         return $this->hasMany(Enrolments::class, 'courseID', 'courseID');
+    }
+
+    public function session(){
+        return $this->hasOne(Session::class, 'courseID', 'courseID');
     }
 }
