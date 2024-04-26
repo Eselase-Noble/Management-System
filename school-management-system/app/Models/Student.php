@@ -10,7 +10,7 @@ class Student extends Model
     use HasFactory;
 
 
-    protected $fillable = [
+    protected $fillable = [-
         'studentID',
         'surname',
         'othernames',
@@ -20,6 +20,7 @@ class Student extends Model
         'telephone',
         'address',
         'nationality',
+        'levelID',
 
     ];
 
@@ -29,6 +30,10 @@ class Student extends Model
 
     public  function enrolment(){
         return $this->hasOne(Enrolments::class, 'studentID', 'studentID');
+    }
+
+    public function level(){
+        return $this->belongsTo(Levels::class, 'levelID', 'levelID');
     }
 
 

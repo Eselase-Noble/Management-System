@@ -15,10 +15,8 @@ return new class extends Migration
             $table->string('courseCode')->primary();
             $table->string('departmentID');
             $table->foreign('departmentID')->references('departmentID')->on('departments')->onDelete('cascade')->onUpdate('cascade');
-//            $table->foreignId('departmentID')->constrained()->onDelete('cascade');
             $table->string('staffID');
             $table->foreign('staffID')->references('staffID')->on('staff')->onDelete('cascade')->onUpdate('cascade');
-           // $table->foreignId('staffID')->constrained()->onDelete('cascade');
             $table->string('courseName');
             $table->string('description');
             $table->timestamps();
