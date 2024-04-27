@@ -116,7 +116,7 @@ class StudentController extends Controller
         }
 
         //update the student records
-        $student->stidentID = $request->studentID;
+        $student->studentID = $request->studentID;
         $student->surname = $request->surname;
         $student->otherNames = $request->otherNames;
         $student->email = $request->email;
