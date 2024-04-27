@@ -51,7 +51,7 @@ class CourseController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function addCourse(Request $request){
-        $input = Courses::all();
+        $input = $request->all();
         $validator = Validator::make($input, [
             'courseID' => ['required', 'string', 'max:100'],
             'courseName' => ['required', 'string', 'max:100'],
