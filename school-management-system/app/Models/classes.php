@@ -9,11 +9,10 @@ class classes extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
-        'sessionID',
         'courseID',
         'venueID',
-        'staffID',
         'startTime',
         'endTime',
     ];
