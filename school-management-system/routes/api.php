@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\VenueController;
+use App\Http\Controllers\CourseController;
 
 Route::get('/user', function (Request $request) {
     return response()->json($request->user());
@@ -63,3 +65,24 @@ Route::post('/department/add', [DepartmentController::class, 'addDepartment']);
 Route::put('/department/update/{id}', [DepartmentController::class, 'updateDepartment']);
 
 Route::delete('/department/delete/{id}', [DepartmentController::class, 'deleteDepartment']);
+
+
+/**
+ * APIs for Venue
+ */
+
+Route::get('/venue/all', [VenueController::class, 'getAllVenues']);
+Route::get('/venue/find/{ID}', [VenueController::class, 'getVenueByID']);
+Route::post('/venue/add', [VenueController::class, 'addVenue']);
+Route::put('/venue/update/{id}',[VenueController::class, 'updateVenue']);
+Route::delete('/venue/delete/{id}', [VenueController::class,'deleteVenue']);
+
+/**
+ * APIs for Courses
+ */
+
+Route::get('/course/all', [CourseController::class, 'getAllCourses']);
+Route::get('/course/find/{id}', [CourseController::class,'getCourseByID']);
+Route::post('/course/add', [CourseController::class, 'addCourse']);
+Route::put('/course/update/{id}', [CourseController::class, 'updateCourse']);
+Route::delete('/course/delete/{id}', [CourseController::class, 'deleteCourse']);
