@@ -69,7 +69,7 @@ class VenueController extends Controller
         ],201);
     }
 
-    
+
 
     /**
      * UPDATE THE VENUE RECORDS
