@@ -55,6 +55,7 @@ class CourseController extends Controller
         $validator = Validator::make($input, [
             'courseID' => ['required', 'string', 'max:100'],
             'courseName' => ['required', 'string', 'max:100'],
+            'semester' => ['required', 'in:First Semester, Second Semester'],
             'description' => ['required', 'string', 'max:255'],
             'departmentID' => ['required', 'string', 'max:100'],
             'staffID' => ['required', 'string' , 'max:100']
@@ -70,6 +71,7 @@ class CourseController extends Controller
         $course = new Courses();
         $course->courseID = $input['courseID'];
         $course->courseName = $input['courseName'];
+        $course->semester = $input['semester'];
         $course->description = $input['description'];
         $course->departmentID = $input['departmentID'];
         $course->staffID = $input['staffID'];
@@ -100,6 +102,7 @@ class CourseController extends Controller
         $validator = Validator::make($request->all(), [
             'courseID' => ['required', 'string', 'max:100'],
             'courseName' => ['required', 'string', 'max:100'],
+            'semester' => ['required', 'in:First Semester, Second Semester'],
             'description' => ['required', 'string', 'max:255'],
             'departmentID' => ['required', 'string', 'max:100'],
             'staffID' => ['required', 'string' , 'max:100']
@@ -113,6 +116,7 @@ class CourseController extends Controller
     //Update the course records
         $course->courseID = $request['courseID'];
         $course->courseName = $request['courseName'];
+        $course->semester = $request['semester'];
         $course->description = $request['description'];
         $course->departmentID = $request['departmentID'];
         $course->staffID = $request['staffID'];

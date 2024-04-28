@@ -11,7 +11,7 @@ class Enrolments extends Model
 
 
     protected $fillable = [
-        'enrolmentID',
+    
         'studentID',
         'courseID',
         'enrolDate',

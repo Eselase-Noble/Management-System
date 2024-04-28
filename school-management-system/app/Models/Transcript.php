@@ -10,7 +10,6 @@ class Transcript extends Model
     use HasFactory;
 
     protected $fillable = [
-        'transcriptID',
         'gradeID'
     ];
 

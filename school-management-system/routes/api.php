@@ -8,6 +8,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\VenueController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\EnrolmentController;
 
 Route::get('/user', function (Request $request) {
     return response()->json($request->user());
@@ -86,3 +87,13 @@ Route::get('/course/find/{id}', [CourseController::class,'getCourseByID']);
 Route::post('/course/add', [CourseController::class, 'addCourse']);
 Route::put('/course/update/{id}', [CourseController::class, 'updateCourse']);
 Route::delete('/course/delete/{id}', [CourseController::class, 'deleteCourse']);
+
+/**
+ * APIs for Enrolment
+ */
+
+Route::get('/student/enrolment/all', [EnrolmentController::class,'getAllEnrolments']);
+Route::get('/student/enrolment/find/{id}', [EnrolmentController::class, 'getEnrolmentByID']);
+Route::post('/student/enrolment/enrol', [EnrolmentController::class, 'enrol']);
+Route::put('/student/enrolment/update/{id}', [EnrolmentController::class,'updateEnrolment']);
+Route::delete('/student/enrolment/delete/{id}', [EnrolmentController::class, 'deleteEnrolment']);

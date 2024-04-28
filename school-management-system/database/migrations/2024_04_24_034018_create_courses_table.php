@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('staffID');
             $table->foreign('staffID')->references('staffID')->on('staff')->onDelete('cascade')->onUpdate('cascade');
             $table->string('courseName');
+            $table->string('semester');
             $table->string('description');
             $table->timestamps();
         });
