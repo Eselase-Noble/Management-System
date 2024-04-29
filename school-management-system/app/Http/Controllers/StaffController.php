@@ -11,17 +11,19 @@ class StaffController extends Controller
 {
 
     /**
+     * select * from staff table
      * @return \Illuminate\Http\JsonResponse
      */
-    //selecy * from staff table
+
     public function getAllStaffs(){
         $staff =  Staff::all();
         return response()->json($staff);
     }
 
-    //Select * from staff table where id = $id
+
 
     /**
+     * Select * from staff table where id = $id
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
@@ -36,9 +38,10 @@ class StaffController extends Controller
 
     //TODO
 
-    //insert into the staff table
+
 
     /**
+     * insert into the staff table
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -90,9 +93,10 @@ class StaffController extends Controller
 
     }
 
-    //update staff
+
 
     /**
+     * update staff
      * @param Request $request
      * @param $staffID
      * @return \Illuminate\Http\JsonResponse
@@ -126,16 +130,16 @@ class StaffController extends Controller
             ], 422);
         }
 
-        $staff->staffID = $request['staffID'];
-        $staff->surname = $request['surname'];
-        $staff->otherNames = $request['otherNames'];
-        $staff->email = $request['email'];
-        $staff->dob = $request['dob'];
-        $staff->gender = $request['gender'];
-        $staff->telephone = $request['telephone'];
-        $staff->address = $request['address'];
-        $staff->nationality = $request['nationality'];
-        $staff->qualification = $request['qualification'];
+        $staff->staffID = $request->staffID;
+        $staff->surname = $request->surname;
+        $staff->otherNames = $request->otherNames;
+        $staff->email = $request->email;
+        $staff->dob = $request->dob;
+        $staff->gender = $request->gender;
+        $staff->telephone = $request->telephone;
+        $staff->address = $request->address;
+        $staff->nationality = $request->nationality;
+        $staff->qualification = $request->qualification;
 
         $staff->save();
 
@@ -145,9 +149,10 @@ class StaffController extends Controller
 
     }
 
-    //delete from staff table
+
 
     /**
+     * delete from staff table
      * @param $staffID
      * @return \Illuminate\Http\JsonResponse|void
      */

@@ -100,8 +100,8 @@ class DepartmentController extends Controller
             ], 422);
         }
 
-        $department->departmentID = $request['departmentID'];
-        $department->departmentName = $request['departmentName'];
+        $department->departmentID = $request->departmentID;
+        $department->departmentName = $request->departmentName;
 
         $department->save();
 

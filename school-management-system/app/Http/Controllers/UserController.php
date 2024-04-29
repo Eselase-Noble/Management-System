@@ -27,7 +27,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function getALlUsers(){
+    public function getAllUsers(){
         $users = User::all();
         return response()->json($users);
     }
@@ -49,8 +49,8 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255','unique:users'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
-            // 'terms' => 
-            // Jetstream::hasTermsAndPrivacyFeature() ? ['accpeted', 'required']: '', 
+            // 'terms' =>
+            // Jetstream::hasTermsAndPrivacyFeature() ? ['accpeted', 'required']: '',
 
         ]);
 
@@ -92,7 +92,7 @@ class UserController extends Controller
             'password' => $this->passwordRules(),
         ]);
 
-        //check if it did not validate 
+        //check if it did not validate
         if($validator->fails()){
             return response()->json(['error' => $validator->errors()], 422);
         }

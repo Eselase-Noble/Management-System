@@ -114,12 +114,12 @@ class CourseController extends Controller
             ], 422);
         }
     //Update the course records
-        $course->courseID = $request['courseID'];
-        $course->courseName = $request['courseName'];
-        $course->semester = $request['semester'];
-        $course->description = $request['description'];
-        $course->departmentID = $request['departmentID'];
-        $course->staffID = $request['staffID'];
+        $course->courseID = $request->courseID;
+        $course->courseName = $request->courseName;
+        $course->semester = $request->semester;
+        $course->description = $request->description;
+        $course->departmentID = $request->departmentID;
+        $course->staffID = $request->staffID;
 
         //Save the new course instance
         $course->save();

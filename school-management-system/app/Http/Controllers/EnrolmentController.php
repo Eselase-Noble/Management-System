@@ -7,11 +7,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 
+/**
+ * author: Nobleson
+ * version: 1.0.0
+ * date: 28/04/2024
+ * This class handle the apis for the Enrolment entity: The GET, POST, PUT, DELETE functions.
+ */
 class EnrolmentController extends Controller
 {
     //todo
 
-    //Get all the courses
+
+    /**
+     * Get all the courses
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getAllEnrolments(){
         $enrolments = Enrolments::all();
 
@@ -19,7 +29,13 @@ class EnrolmentController extends Controller
     }
 
 
-    //Get a course based on a particular courseID
+
+
+    /**
+     * Get a course based on a particular courseID
+     * @param $enrolmentID
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getEnrolmentByID($enrolmentID){
         $enrolment = Enrolments::find($enrolmentID);
 
@@ -33,7 +49,13 @@ class EnrolmentController extends Controller
     }
 
 
-    //insert into the course table
+
+
+    /**
+     * insert into the course table
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|void
+     */
     public function enrol(Request $request){
         $input = $request->all();
 
@@ -63,8 +85,14 @@ class EnrolmentController extends Controller
         }
     }
 
-    //update the course record based on a specified courseID
 
+
+    /**
+     * update the course record based on a specified courseID
+     * @param Request $request
+     * @param $enrolmentID
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateEnrolment(Request $request, $enrolmentID){
         $enrolment = Enrolments::find($enrolmentID);
 
@@ -81,9 +109,9 @@ class EnrolmentController extends Controller
         ]);
 
         //Update the existing record(s)
-        $enrolment->studentID = $request['studentID'];
-        $enrolment->courseID = $request['courseID'];
-        $enrolment->enrolDate = $request['enrolDate'];
+        $enrolment->studentID = $request->studentID;
+        $enrolment->courseID = $request->courseID;
+        $enrolment->enrolDate = $request->enrolDate;
 
         //SAVE A NEW TO THE DB
         $enrolment->save();
@@ -94,7 +122,13 @@ class EnrolmentController extends Controller
 
     }
 
-    //delete a specific courseID
+
+
+    /**
+     * delete a specific courseID
+     * @param $enrolmentID
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function deleteEnrolment($enrolmentID){
         $enrolment = Enrolments::find($enrolmentID);
 

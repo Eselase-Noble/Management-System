@@ -109,12 +109,12 @@ class ClassesController extends Controller
             ], 422);
         }
 
-        $session->courseID = $request['courseID'];
-        $session->venueID = $request['venueID'];
-        $session->startTime = $request['startTime'];
-        $session->endTime = $request['endTime'];
+        $session->courseID = $request->courseID;
+        $session->venueID = $request->venueID;
+        $session->startTime = $request->startTime;
+        $session->endTime = $request->endTime;
 
-        //Save the new class to the DB
+        //Save the updated class to the DB
         $session->save();
 
         return response()->json([

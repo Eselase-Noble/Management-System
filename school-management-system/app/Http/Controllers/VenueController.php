@@ -6,6 +6,12 @@ use App\Models\Venue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * author: Nobleson
+ * version: 1.0.0
+ * date: 28/04/2024
+ * This class handle the apis for the Venue entity: The GET, POST, PUT, DELETE functions.
+ */
 class VenueController extends Controller
 {
     //
@@ -97,8 +103,8 @@ class VenueController extends Controller
         }
 
         //Update the venue records
-        $venue->venueID = $request['venusID'];
-        $venue->venueName = $request['venueName'];
+        $venue->venueID = $request->venusID;
+        $venue->venueName = $request->venueName;
 
         //Save the updated venus records
         $venue->save();
