@@ -9,6 +9,10 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\VenueController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EnrolmentController;
+use App\Http\Controllers\GradesController;
+use App\Http\Controllers\TranscriptController;
+use App\Http\Controllers\LevelController;
+use App\Http\Controllers\ClassesController;
 
 Route::get('/user', function (Request $request) {
     return response()->json($request->user());
@@ -97,3 +101,43 @@ Route::get('/student/enrolment/find/{id}', [EnrolmentController::class, 'getEnro
 Route::post('/student/enrolment/enrol', [EnrolmentController::class, 'enrol']);
 Route::put('/student/enrolment/update/{id}', [EnrolmentController::class,'updateEnrolment']);
 Route::delete('/student/enrolment/delete/{id}', [EnrolmentController::class, 'deleteEnrolment']);
+
+/**
+ * APIs for Grades
+ */
+
+Route::get('/student/grade/all', [GradesController::class,'getAllGrades']);
+Route::get('/student/grade/find/{id}', [GradesController::class, 'getGradeByID']);
+Route::post('/student/grade/add', [GradesController::class, 'createGrade']);
+Route::put('/student/grade/update/{id}', [GradesController::class,'updateGrade']);
+Route::delete('/student/grade/delete/{id}', [GradesController::class, 'deleteGrade']);
+
+/**
+ * APIs for Transcript
+ */
+
+Route::get('/student/transcript/all', [TranscriptController::class,'getAllTranscript']);
+Route::get('/student/transcript/find/{id}', [TranscriptController::class, 'getTranscriptByID']);
+Route::post('/student/transcript/add', [TranscriptController::class, 'createTranscript']);
+//Route::put('/student/transcript/update/{id}', [TranscriptController::class,'']);
+//Route::delete('/student/transcript/delete/{id}', [GradesController::class, 'deleteGrade']);
+
+/**
+ * APIs for Classes
+ */
+
+Route::get('/student/class/all', [ClassesController::class,'getAllClasses']);
+Route::get('/student/class/find/{id}', [ClassesController::class, 'getClassByID']);
+Route::post('/student/class/add', [ClassesController::class, 'addClass']);
+Route::put('/student/class/update/{id}', [ClassesController::class,'updateClass']);
+Route::delete('/student/class/delete/{id}', [ClassesController::class, 'deleteClass']);
+
+/**
+ * APIs for Level
+ */
+
+Route::get('/student/level/all', [LevelController::class,'getAllLevels']);
+Route::get('/student/level/find/{id}', [LevelController::class, 'getLevelByID']);
+Route::post('/student/level/add', [LevelController::class, 'createLevel']);
+Route::put('/student/level/update/{id}', [LevelController::class,'updateLevelRecords']);
+Route::delete('/student/level/delete/{id}', [LevelController::class, 'deleteLevel']);
