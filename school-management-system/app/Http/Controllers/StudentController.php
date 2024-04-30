@@ -50,6 +50,7 @@ class StudentController extends Controller
         'telephone'=> ['required', 'string', 'max:255'],
         'address'=> ['required', 'string', 'max:255'],
         'nationality'=> ['required', 'string', 'max:255'],
+            'levelID' => ['required', 'string', 'max:100'],
         ]);
 
 
@@ -70,6 +71,7 @@ class StudentController extends Controller
         $student->telephone = $input['telephone'];
         $student->address = $input['address'];
         $student->nationality = $input['nationality'];
+        $student->levelID = $input->levelID;
 
         //save the student to the students table
         $student->save();
@@ -107,6 +109,7 @@ class StudentController extends Controller
             'telephone'=> ['required', 'string', 'max:255'],
             'address'=> ['required', 'string', 'max:255'],
             'nationality'=> ['required', 'string', 'max:255'],
+            'levelID' => ['required', 'string', 'max:100'],
         ]);
 
         if($validator->fails()){
@@ -125,6 +128,7 @@ class StudentController extends Controller
         $student->telephone = $request->telephone;
         $student->address = $request->address;
         $student->nationality = $request->nationality;
+        $student->levelID = $request->levelID;
 
 
         $student->save();

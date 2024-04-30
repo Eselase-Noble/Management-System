@@ -57,6 +57,7 @@ class LevelController extends Controller
         $input = $request->all();
 
         $validator = Validator::make($input, [
+            'levelID' => ['required', 'string', 'max:100'],
             'studentLevel' => ['required', 'string', 'max:100']
         ]);
 
@@ -69,6 +70,7 @@ class LevelController extends Controller
 
         //Create a new level
         $level = new Levels();
+        $level->levelID = $input['levelID'];
         $level->levelName = $input['levelName'];
 
         //save the level to the DB
@@ -94,6 +96,7 @@ class LevelController extends Controller
             return response()->json(['error'=>'Level not found']);
         }
         $validator = Validator::make($request->all(), [
+            'levelID' => ['required', 'string', 'max:100'],
             'studentLevel' => ['required', 'string', 'max:100']
         ]);
 
@@ -102,6 +105,7 @@ class LevelController extends Controller
             return response()->json(['error'=>$validator->errors()],422);
         }
         //Update the records
+        $level->levelID = $request->levelID;
         $level->levelName = $request->levelName;
 
         //save the updated record to the DB
