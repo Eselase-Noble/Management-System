@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('telephone');
             $table->string('address');
             $table->string('nationality');
+            $table->string('levelID');
             $table->timestamps();
         });
     }
