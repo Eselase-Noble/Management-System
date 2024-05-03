@@ -18,13 +18,14 @@ class StudentController extends Controller
     }
 
 
+    //todo : check for error (students.id)
     /**
      * select * from students where id = id;
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getStudentByID($id){
-        $student = Student::find($id);
+    public function getStudentByStudentID($studentID){
+        $student = Student::find($studentID);
         if(!$student){
             return response()->json(['error' => 'Student not found'], 404);
         }

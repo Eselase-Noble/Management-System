@@ -34,14 +34,10 @@ Route::delete('/user/delete/{id}', [UserController::class, 'delete']);
  * APIs for Student
  */
 
-Route::post('/student/add', [StudentController::class, 'addStudent']);
-
+Route::post('/student/addStudent', [StudentController::class, 'addStudent']);
 Route::get('/student/all', [StudentController::class, 'getAllStudents']);
-
-Route::get('/student/get/{id}', [StudentController::class, 'getStudentByID']);
-
+Route::get('/student/get/{studentID}', [StudentController::class, 'getStudentByStudentID']);
 Route::put('/student/update/{id}', [StudentController::class, 'updateStudent']);
-
 Route::delete('/student/delete/{id}', [StudentController::class, 'deleteStudent']);
 
 /**

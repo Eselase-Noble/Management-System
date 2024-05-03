@@ -2,10 +2,15 @@
 
 namespace Database\Seeders;
 
+use App\Models\classes;
+use App\Models\Courses;
 use App\Models\Department;
+use App\Models\Enrolments;
+use App\Models\Grades;
 use App\Models\Levels;
 use App\Models\Staff;
 use App\Models\Student;
+use App\Models\Transcript;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Venue;
@@ -30,5 +35,10 @@ class DatabaseSeeder extends Seeder
         Staff::factory()->count(50)->create();
         Venue::factory()->count(10)->create()->unique();
         Department::factory()->count(12)->create()->unique();
+        Courses::factory()->count(20)->create()->unique();
+        Grades::factory()->count(50)->create();
+        classes::factory()->count(15)->create()->unique();
+        Enrolments::factory()->count(50)->create()->unique();
+        Transcript::factory()->count(50)->create()->unique();
     }
 }
