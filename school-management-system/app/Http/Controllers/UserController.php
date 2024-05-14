@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Actions\Jetstream\DeleteUser;
+use Illuminate\Validation\Rules\Password;
+use Laravel\Jetstream\Jetstream;
 
 class UserController extends Controller
 {
@@ -49,8 +52,8 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255','unique:users'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
-            // 'terms' =>
-            // Jetstream::hasTermsAndPrivacyFeature() ? ['accpeted', 'required']: '',
+//             'terms' =>
+//             Jetstream::hasTermsAndPrivacyFeature() ? ['accpeted', 'required']: '',
 
         ]);
 
@@ -123,7 +126,12 @@ class UserController extends Controller
             }
 
             //delete the user
-            $user->delete();
+            $deleteUser = new DeleteUser();
+            $deleteUser->delete($user);
+//            $user->deleteProfilePhoto();
+//            $user->tokens->each->delete();
+//            $user->delete();
+
 
             return response()->json(['message' => 'User deleted successfully']);
         }
@@ -134,11 +142,11 @@ class UserController extends Controller
             'required',
             'string',
            // 'confirmed', // Ensure password_confirmation field is present and matches password
-            //Password::min(8) // Minimum length of 8 characters
-                // ->letters() // At least one letter
-                // ->mixedCase() // Contains both uppercase and lowercase letters
-                // ->numbers() // Contains at least one number
-                // ->symbols(), // Contains at least one symbol
+            Password::min(8) // Minimum length of 8 characters
+                 ->letters() // At least one letter
+                 ->mixedCase() // Contains both uppercase and lowercase letters
+                 ->numbers() // Contains at least one number
+                 ->symbols(), // Contains at least one symbol
         ];
     }
 }

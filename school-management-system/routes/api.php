@@ -22,6 +22,8 @@ Route::get('/user', function (Request $request) {
  * APIs for User
  */
 
+Route::get('/user/all', [UserController::class, 'getAllUsers']);
+
 Route::post('/user/login', [UserController::class, 'login']);
 
 Route::post('/user/register', [UserController::class, 'register']);
