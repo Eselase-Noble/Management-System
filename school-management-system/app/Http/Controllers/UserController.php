@@ -12,6 +12,46 @@ use Laravel\Jetstream\Jetstream;
 
 class UserController extends Controller
 {
+
+
+    public function register(Request $request){
+        $input = $request->all();
+        $validator =  Validator::make($input, [
+            'surname' => ['required', 'string', 'max:255'],
+            'othernames' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255','unique:users'],
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'password' => $this->passwordRules(),
+//             'terms' =>
+//             Jetstream::hasTermsAndPrivacyFeature() ? ['accpeted', 'required']: '',
+
+        ]);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+        //New user instance
+        $user = new User();
+        $user->surname = $input['surname'];
+        $user->othernames = $input['othernames'];
+        $user->email = $input['email'];
+        $user->username = $input['username'];
+        $user->password = Hash::make($input['password']);
+
+        //$accessToken = $user->createToken('authToken')->accessToken;
+        $device = substr($request->userAgent() ?? '', 0, 255);
+
+        //save the user to the users table
+        $user->save();
+
+        return response()->json([
+            'message' => 'User registered successfully',
+            'token' => $user->createToken($device)->plainTextToken,
+            'surname' => $user->surname,
+        ], 201);
+    }
+
     // use PasswordValidationRules;
     function login(Request $request){
         $user = User::where('email', $request->email)->first();
@@ -44,40 +84,7 @@ class UserController extends Controller
     }
 
 
-    public function register(Request $request){
-        $input = $request->all();
-        $validator =  Validator::make($input, [
-            'surname' => ['required', 'string', 'max:255'],
-            'othernames' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255','unique:users'],
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'password' => $this->passwordRules(),
-//             'terms' =>
-//             Jetstream::hasTermsAndPrivacyFeature() ? ['accpeted', 'required']: '',
 
-        ]);
-
-        // Check if validation fails
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 422);
-        }
-            //New user instance
-        $user = new User();
-        $user->surname = $input['surname'];
-        $user->othernames = $input['othernames'];
-        $user->email = $input['email'];
-        $user->username = $input['username'];
-        $user->password = Hash::make($input['password']);
-
-        //save the user to the users table
-        $user->save();
-
-        return response()->json([
-            'message' => 'User registered successfully',
-             'token' => $user->remember_token,
-             'surname' => $user->surname,
-    ], 201);
-    }
 
     public function update(Request $request, $id){
         $user = User::find($id);
